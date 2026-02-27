@@ -1,0 +1,72 @@
+[
+  {
+    "id": "RP001",
+    "name": "Element has Element_ID",
+    "description": "Ensure that every BIM element exported to IFC includes a non‑empty Element_ID parameter. A missing or misspelled property is a common pitfall when embedding IFC‑SG parameters, leading to incomplete mapping or incorrect validation【431666132276182†L23-L29】.",
+    "entity": "IfcElement",
+    "property": "Element_ID",
+    "criteria": "not_empty",
+    "severity": "error",
+    "message": "Element_ID is missing or empty. Add a unique identifier for this element."
+  },
+  {
+    "id": "RP002",
+    "name": "Check Property Name Spelling",
+    "description": "Many IFC‑SG properties are manually created in BIM authoring tools. Misspellings will cause them to be omitted from the exported IFC file【431666132276182†L23-L29】. This rule verifies that property names exactly match the IFC‑SG mapping file.",
+    "entity": "IfcElement",
+    "property": "*",
+    "criteria": "name_matches_mapping",
+    "severity": "error",
+    "message": "Property name does not match the IFC‑SG specification. Check spelling against the mapping file."
+  },
+  {
+    "id": "RP003",
+    "name": "Property Set Assignment",
+    "description": "Properties must belong to the correct property set. For example, FireRating should be part of Pset_WallCommon rather than SGPset_Wall according to the IFC‑SG mapping【431666132276182†L23-L29】.",
+    "entity": "IfcWall",
+    "property": "FireRating",
+    "criteria": "pset=Pset_WallCommon",
+    "severity": "warning",
+    "message": "FireRating assigned to an incorrect property set. Move it to Pset_WallCommon."
+  },
+  {
+    "id": "RP004",
+    "name": "Mandatory IFC‑SG Parameter Presence",
+    "description": "Checks that agency‑specific mandatory parameters from the IFC‑SG mapping file are present. For example, mechanical ventilation systems need air change rates and supply/exhaust configurations as part of NEA requirements【632392668205234†L35-L39】.",
+    "entity": "IfcSpace",
+    "property": "AirChangeRate",
+    "criteria": "not_empty",
+    "severity": "error",
+    "message": "AirChangeRate is required for spaces subject to mechanical ventilation. Provide a numeric value."
+  },
+  {
+    "id": "RP005",
+    "name": "Numeric Parameter Validation",
+    "description": "Validates that numeric parameters such as Length, Breadth and Height are positive numbers and reflect the actual element geometry. Incorrect values can lead to wrong dimensioning in regulatory submissions【431666132276182†L42-L49】.",
+    "entity": "IfcBuildingElement",
+    "property": "Length|Breadth|Height",
+    "criteria": "positive_number",
+    "severity": "error",
+    "message": "Dimension parameter must be a positive number. Check Length, Breadth and Height values."
+  },
+  {
+    "id": "RP006",
+    "name": "Presence of MP_Category",
+    "description": "The Model Purpose category (MP_Category) identifies the discipline and regulatory gateway for each element. Missing MP_Category reduces the usefulness of the IFC‑SG model and leads to incorrect validation results【431666132276182†L42-L49】.",
+    "entity": "IfcElement",
+    "property": "MP_Category",
+    "criteria": "not_empty",
+    "severity": "warning",
+    "message": "MP_Category is missing. Set the correct model purpose category based on the IFC‑SG specification."
+  },
+  {
+    "id": "RP007",
+    "name": "Ventilation Equipment Agency Parameters",
+    "description": "For NEA submissions, ventilation equipment must include pollution control and sanitary provisions. This rule ensures required parameters such as GreaseTrapSize and OdorControlSystem are present【632392668205234†L35-L38】.",
+    "entity": "IfcFlowTerminal",
+    "property": "GreaseTrapSize|OdorControlSystem",
+    "criteria": "not_empty",
+    "severity": "warning",
+    "message": "NEA parameters missing on ventilation equipment. Add GreaseTrapSize and OdorControlSystem details."
+  }
+]
