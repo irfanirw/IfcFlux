@@ -44,7 +44,7 @@ Constraints: model files are confidential; must remain local.
 
 ## 4. Core User Stories (MVP)
 1. Import one or more IFC files and see them rendered together in a single scene.
-2. Navigate smoothly; isolate/hide elements; use X/Y/Z section clipping planes.
+2. Navigate smoothly; isolate/hide elements; use X/Y/Z section clipping planes; view Top/Front/Back/Left/Right.
 3. Browse model via tree by Spatial / Type / Discipline.
 4. Select elements and inspect properties (identity + psets/qto); search by name/class/GlobalId.
 5. Run validation and see results grouped by severity; click a result to zoom/select/highlight.
@@ -76,7 +76,7 @@ Minimum:
 - Selection highlight
 - Hide / show / isolate
 - **Section clipping planes** X/Y/Z with interactive offset control (gizmo or slider)
-- Grid + global axis indicator
+- Grid + global axis indicator (architecture/Rhinoceros 3D model convention)
 - Color modes:
   - Default
   - By model
