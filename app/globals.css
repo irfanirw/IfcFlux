@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #0f2648 0%, #040d1d 55%, #030912 100%);
+  color: #e7f1ff;
+  font-family: Inter, Segoe UI, Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.panel-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #1d4d82 #08172a;
+}
